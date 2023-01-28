@@ -1,0 +1,60 @@
+version: '3.8'
+
+networks:
+  laravel:
+
+services:
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - 8081:80
+    depends_on:
+      - php
+      - mysql
+      - redis
+    volumes:
+      - ./laravel:/var/www/html
+    working_dir: /var/www/html
+    networks:
+      - laravel
+  php:
+    build: ./php
+    container_name: php
+    ports:
+      - 9000:9000
+    volumes:
+      - ./laravel:/var/www/html
+    networks:
+      - laravel
+  mysql:
+    build: ./mysql
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      TZ: ${APP_TIMEZONE}
+    ports:
+      - 3307:${DB_PORT}
+    volumes:
+      - ./mysql/var/lib/mysql:/var/lib/mysql
+    networks:
+      - laravel
+  redis:
+    build: ./redis
+    container_name: redis
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    ports:
+      - 6380:${REDIS_PORT}
+    networks:
+      - laravel
+  cron:
+    build: ./cron
+    container_name: cron
+    volumes:
+      - ./laravel:/var/www/html
+    depends_on:
+      - nginx
+    networks:
+      - laravel

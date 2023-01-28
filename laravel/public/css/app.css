@@ -1,0 +1,33 @@
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+main .card:hover {
+    border-color: rgba(13, 110, 253, 1) !important;
+}
+
+#about-us-modal .modal-header,
+#orders-modal .modal-header,
+#users-modal .modal-header,
+#cart-modal .modal-header,
+#sign-up-modal .modal-header,
+#sign-in-modal .modal-header,
+#profile-settings-modal .modal-header,
+#change-password-modal .modal-header {
+    border-bottom: none;
+}
+
+#navbar .dropdown-menu[data-bs-popper] {
+    left: unset;
+    right: 0;
+}
+
+#spinner-modal .modal-content {
+    background-color: unset;
+    border: unset;
+}
+
+#spinner-modal .spinner-border {
+    width: 4rem;
+    height: 4rem;
+}
