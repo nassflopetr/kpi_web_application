@@ -5,6 +5,7 @@ document.addEventListener('viewLoaded', function () {
             'keyboard': false
         }),
         changePasswordModalElementExists = document.querySelectorAll('#change-password-modal').length === 1,
+        profileDeleteModalElementExists = document.querySelectorAll('#profile-delete-modal').length === 1,
         changePasswordModal = (function () {
             if (changePasswordModalElementExists) {
                 return bootstrap.Modal.getOrCreateInstance(
@@ -14,8 +15,18 @@ document.addEventListener('viewLoaded', function () {
 
             return null;
         })(),
+        profileDeleteModal = (function () {
+            if (profileDeleteModalElementExists) {
+                return bootstrap.Modal.getOrCreateInstance(
+                    document.querySelector('#profile-delete-modal'), {'backdrop': 'static', 'keyboard': false}
+                );
+            }
+
+            return null;
+        })(),
         profileSettingsFormElement = profileSettingsModalElement.querySelector('form'),
         iWantToChangeMyPasswordElement = profileSettingsFormElement.querySelector('#i-want-to-change-my-password'),
+        iWantToDeleteMyProfileElement = profileSettingsFormElement.querySelector('#i-want-to-delete-my-profile'),
         profileSettingsCloseButtonElement = profileSettingsModalElement.querySelector('button.btn-close'),
         profileSettingsFirstNameElement = profileSettingsFormElement.querySelector('[name=first_name]'),
         profileSettingsPhoneElement = profileSettingsFormElement.querySelector('[name=phone]'),
@@ -175,6 +186,18 @@ document.addEventListener('viewLoaded', function () {
 
             profileSettingsModal.hide();
         },
+        preventDefaultIWantToDeleteMyProfileElementClickEvent = function (event) {
+            event.preventDefault();
+        },
+        defaultIWantToDeleteMyProfileElementClickEvent = function (event) {
+            event.preventDefault();
+
+            profileSettingsModalElement.addEventListener('hidden.bs.modal', function (event) {
+                profileDeleteModal.show();
+            }, {once: true});
+
+            profileSettingsModal.hide();
+        },
         setProfileSettingsFormInProgressState = function () {
             profileSettingsModalElement.removeEventListener('hidePrevented.bs.modal', hideProfileSettingsModalOnHidePreventedEvent);
 
@@ -187,6 +210,11 @@ document.addEventListener('viewLoaded', function () {
                 iWantToChangeMyPasswordElement.addEventListener('click', preventDefaultIWantToChangeMyPasswordElementClickEvent);
             }
 
+            if (profileDeleteModalElementExists) {
+                iWantToDeleteMyProfileElement.removeEventListener('click', defaultIWantToDeleteMyProfileElementClickEvent);
+                iWantToDeleteMyProfileElement.addEventListener('click', preventDefaultIWantToDeleteMyProfileElementClickEvent);
+            }
+
             profileSettingsCloseButtonElement.disabled = true;
             profileSettingsButtonIcon.showLoading();
         },
@@ -197,6 +225,11 @@ document.addEventListener('viewLoaded', function () {
             if (changePasswordModalElementExists) {
                 iWantToChangeMyPasswordElement.removeEventListener('click', preventDefaultIWantToChangeMyPasswordElementClickEvent);
                 iWantToChangeMyPasswordElement.addEventListener('click', defaultIWantToChangeMyPasswordElementClickEvent);
+            }
+
+            if (profileDeleteModalElementExists) {
+                iWantToDeleteMyProfileElement.removeEventListener('click', preventDefaultIWantToDeleteMyProfileElementClickEvent);
+                iWantToDeleteMyProfileElement.addEventListener('click', defaultIWantToDeleteMyProfileElementClickEvent);
             }
 
             profileSettingsFormValidator.getElements().forEach(function (element) {
@@ -402,6 +435,12 @@ document.addEventListener('viewLoaded', function () {
         iWantToChangeMyPasswordElement.closest('div.row').remove();
     }
 
+    if (profileDeleteModalElementExists) {
+        iWantToDeleteMyProfileElement.addEventListener('click', defaultIWantToDeleteMyProfileElementClickEvent);
+    } else {
+        iWantToDeleteMyProfileElement.closest('div.row').remove();
+    }
+
     profileSettingsButtonElement.addEventListener('click', clickProfileSettingsButtonElementEvent);
 
     profileSettingsModalElement.addEventListener('shown.bs.modal', function (event) {
@@ -430,6 +469,11 @@ document.addEventListener('viewLoaded', function () {
         if (changePasswordModalElementExists) {
             iWantToChangeMyPasswordElement.removeEventListener('click', defaultIWantToChangeMyPasswordElementClickEvent);
             iWantToChangeMyPasswordElement.removeEventListener('click', preventDefaultIWantToChangeMyPasswordElementClickEvent);
+        }
+
+        if (profileDeleteModalElementExists) {
+            iWantToDeleteMyProfileElement.removeEventListener('click', defaultIWantToDeleteMyProfileElementClickEvent);
+            iWantToDeleteMyProfileElement.removeEventListener('click', preventDefaultIWantToDeleteMyProfileElementClickEvent);
         }
 
         profileSettingsButtonElement.removeEventListener('click', clickProfileSettingsButtonElementEvent);

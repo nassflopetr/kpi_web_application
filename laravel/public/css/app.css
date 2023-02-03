@@ -6,6 +6,7 @@ main .card:hover {
     border-color: rgba(13, 110, 253, 1) !important;
 }
 
+#profile-delete-modal .modal-header,
 #about-us-modal .modal-header,
 #orders-modal .modal-header,
 #users-modal .modal-header,

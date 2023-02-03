@@ -3,6 +3,7 @@
 @include('templates.about-us')
 @include('templates.cart')
 @include('templates.orders')
+@include('templates.profile-delete')
 
 <script id="user">
     view.loadScripts([
@@ -13,6 +14,7 @@
         '{{ asset('js/about-us.js') }}',
         '{{ asset('js/cart.js') }}',
         '{{ asset('js/orders.js') }}',
+        '{{ asset('js/profile-delete.js') }}'
     ]);
 
     document.getElementById('user').remove();

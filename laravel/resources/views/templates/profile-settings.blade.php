@@ -75,6 +75,16 @@
 
                         <div class="row">
                             <div class="col-12">
+                                <p class="text-muted mb-3 text-center">
+                                    <a id="i-want-to-delete-my-profile" href="#">
+                                        Видалити обліковий запис!
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
                                 <button type="button" class="btn btn-lg btn-success w-100 mb-3">
                                     <i data-button-icon="default"></i>
                                     <span data-button-text="default" class="align-middle">Змінити</span>

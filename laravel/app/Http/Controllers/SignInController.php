@@ -35,6 +35,6 @@ class SignInController  extends Controller
 
         $request->session()->regenerate();
 
-        return response()->json(['user' => Auth::user()]);
+        return response()->json();
     }
 }

@@ -9,7 +9,7 @@
                     <div class="container-fluid">
                         <div class="row text-center">
                             <div class="col-12 mb-3 mt-0">
-                                <i class="bi bi-person-plus" style="font-size: 6rem"></i>
+                                <i class="bi bi-person-add" style="font-size: 6rem"></i>
                             </div>
                         </div>
 
