@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
-class ChangePasswordController  extends Controller
+class ProfilePasswordChangeController  extends Controller
 {
     public function __invoke(Request $request): JsonResponse
     {

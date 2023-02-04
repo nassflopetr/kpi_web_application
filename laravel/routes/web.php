@@ -24,7 +24,7 @@ Route::post('/sign-out', App\Http\Controllers\SignOutController::class)->middlew
 Route::post('/profile', App\Http\Controllers\ProfileController::class)->middleware('auth');
 Route::post('/profile-change', App\Http\Controllers\ProfileChangeController::class)->middleware('auth');
 Route::post('/profile-delete', App\Http\Controllers\ProfileDeleteController::class)->middleware('auth');
-Route::post('/change-password', App\Http\Controllers\ChangePasswordController::class)->middleware('auth');
+Route::post('/profile-password-change', App\Http\Controllers\ProfilePasswordChangeController::class)->middleware('auth');
 
 Route::post('/cart', App\Http\Controllers\CartController::class)->middleware(['auth', 'client']);
 Route::post('/add-to-cart', App\Http\Controllers\AddToCartController::class)->middleware(['auth', 'client']);

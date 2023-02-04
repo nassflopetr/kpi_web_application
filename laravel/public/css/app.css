@@ -14,7 +14,7 @@ main .card:hover {
 #sign-up-modal .modal-header,
 #sign-in-modal .modal-header,
 #profile-settings-modal .modal-header,
-#change-password-modal .modal-header {
+#profile-password-change-modal .modal-header {
     border-bottom: none;
 }
 

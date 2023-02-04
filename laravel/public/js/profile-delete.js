@@ -47,13 +47,29 @@ document.addEventListener('viewLoaded', function () {
                         }
 
                         if ((new RegExp(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*;_])[a-zA-Z0-9!@#$%^&*;_]{8,30}$/)).test(value)) {
-                            return {'valid': true};
+                            const profileDeleteConfirmationPasswordElement = this.getElement('confirmation_password'),
+                                confirmationPasswordValue = profileDeleteConfirmationPasswordElement.value.toString();
+
+                            if (confirmationPasswordValue !== '') {
+                                if (value !== confirmationPasswordValue) {
+                                    return {
+                                        'valid': false,
+                                        'message': 'Паролі не збігаються.'
+                                    };
+                                } else {
+                                    this._setValid(profileDeleteConfirmationPasswordElement);
+
+                                    return {'valid': true};
+                                }
+                            } else {
+                                return {'valid': true};
+                            }
                         }
 
                         return {
                             'valid': false,
                             'message': 'Поле має містити принаймні одну велику та малу літери, одну цифру та символ.'
-                        }
+                        };
                     }
                 },
                 'confirmation_password': {
@@ -67,14 +83,44 @@ document.addEventListener('viewLoaded', function () {
                             };
                         }
 
-                        if (value !== profileDeletePasswordElement.value.toString()) {
+                        if (value.length < 8) {
                             return {
                                 'valid': false,
-                                'message': 'Паролі не збігаються.'
+                                'message': 'Поле має містити принаймні 8 символів.'
                             }
                         }
 
-                        return {'valid': true};
+                        if (value.length > 30) {
+                            return {
+                                'valid': false,
+                                'message': 'Поле не має перевищувати 30 символів.'
+                            }
+                        }
+
+                        if ((new RegExp(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*;_])[a-zA-Z0-9!@#$%^&*;_]{8,30}$/)).test(value)) {
+                            const profileDeletePasswordElement = this.getElement('password'),
+                                passwordValue = profileDeletePasswordElement.value.toString();
+
+                            if (passwordValue !== '') {
+                                if (value !== passwordValue) {
+                                    return {
+                                        'valid': false,
+                                        'message': 'Паролі не збігаються.'
+                                    };
+                                } else {
+                                    this._setValid(profileDeletePasswordElement);
+
+                                    return {'valid': true};
+                                }
+                            } else {
+                                return {'valid': true};
+                            }
+                        }
+
+                        return {
+                            'valid': false,
+                            'message': 'Поле має містити принаймні одну велику та малу літери, одну цифру та символ.'
+                        };
                     }
                 }
             }

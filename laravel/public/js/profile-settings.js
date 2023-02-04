@@ -4,12 +4,12 @@ document.addEventListener('viewLoaded', function () {
             'backdrop': 'static',
             'keyboard': false
         }),
-        changePasswordModalElementExists = document.querySelectorAll('#change-password-modal').length === 1,
+        profilePasswordChangeModalElementExists = document.querySelectorAll('#profile-password-change-modal').length === 1,
         profileDeleteModalElementExists = document.querySelectorAll('#profile-delete-modal').length === 1,
-        changePasswordModal = (function () {
-            if (changePasswordModalElementExists) {
+        profilePasswordChangeModal = (function () {
+            if (profilePasswordChangeModalElementExists) {
                 return bootstrap.Modal.getOrCreateInstance(
-                    document.querySelector('#change-password-modal'), {'backdrop': 'static', 'keyboard': false}
+                    document.querySelector('#profile-password-change-modal'), {'backdrop': 'static', 'keyboard': false}
                 );
             }
 
@@ -181,7 +181,7 @@ document.addEventListener('viewLoaded', function () {
             event.preventDefault();
 
             profileSettingsModalElement.addEventListener('hidden.bs.modal', function (event) {
-                changePasswordModal.show();
+                profilePasswordChangeModal.show();
             }, {once: true});
 
             profileSettingsModal.hide();
@@ -205,7 +205,7 @@ document.addEventListener('viewLoaded', function () {
                 element.readOnly = true;
             });
 
-            if (changePasswordModalElementExists) {
+            if (profilePasswordChangeModalElementExists) {
                 iWantToChangeMyPasswordElement.removeEventListener('click', defaultIWantToChangeMyPasswordElementClickEvent);
                 iWantToChangeMyPasswordElement.addEventListener('click', preventDefaultIWantToChangeMyPasswordElementClickEvent);
             }
@@ -222,7 +222,7 @@ document.addEventListener('viewLoaded', function () {
             profileSettingsButtonIcon.showDefault();
             profileSettingsCloseButtonElement.disabled = false;
 
-            if (changePasswordModalElementExists) {
+            if (profilePasswordChangeModalElementExists) {
                 iWantToChangeMyPasswordElement.removeEventListener('click', preventDefaultIWantToChangeMyPasswordElementClickEvent);
                 iWantToChangeMyPasswordElement.addEventListener('click', defaultIWantToChangeMyPasswordElementClickEvent);
             }
@@ -429,7 +429,7 @@ document.addEventListener('viewLoaded', function () {
 
     profileSettingsModalElement.addEventListener('hidePrevented.bs.modal', hideProfileSettingsModalOnHidePreventedEvent);
 
-    if (changePasswordModalElementExists) {
+    if (profilePasswordChangeModalElementExists) {
         iWantToChangeMyPasswordElement.addEventListener('click', defaultIWantToChangeMyPasswordElementClickEvent);
     } else {
         iWantToChangeMyPasswordElement.closest('div.row').remove();
@@ -466,7 +466,7 @@ document.addEventListener('viewLoaded', function () {
     profileSettingsElement.addEventListener('click', clickProfileSettingsElementEvent);
 
     view.addDestroyer(function () {
-        if (changePasswordModalElementExists) {
+        if (profilePasswordChangeModalElementExists) {
             iWantToChangeMyPasswordElement.removeEventListener('click', defaultIWantToChangeMyPasswordElementClickEvent);
             iWantToChangeMyPasswordElement.removeEventListener('click', preventDefaultIWantToChangeMyPasswordElementClickEvent);
         }

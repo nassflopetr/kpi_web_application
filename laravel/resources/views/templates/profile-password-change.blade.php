@@ -1,4 +1,4 @@
-<div id="change-password-modal" class="modal" aria-hidden="true" tabindex="-1">
+<div id="profile-password-change-modal" class="modal" aria-hidden="true" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,10 +16,10 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-floating mb-3">
-                                    <input id="change-password-password" name="password" type="password"
+                                    <input id="profile-password-change-password" name="password" type="password"
                                            class="form-control"
                                            placeholder="Пароль">
-                                    <label for="change-password-password">Пароль</label>
+                                    <label for="profile-password-change-password">Пароль</label>
                                 </div>
                             </div>
                         </div>
@@ -27,10 +27,10 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-floating mb-3">
-                                    <input id="change-password-new-password" name="new_password" type="password"
+                                    <input id="profile-password-change-new-password" name="new_password" type="password"
                                            class="form-control"
                                            placeholder="Новий пароль">
-                                    <label for="change-password-new-password">Новий пароль</label>
+                                    <label for="profile-password-change-new-password">Новий пароль</label>
                                 </div>
                             </div>
                         </div>
@@ -38,10 +38,10 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-floating mb-3">
-                                    <input id="change-password-confirmation-new-password" name="confirmation_new_password" type="password"
+                                    <input id="profile-password-change-confirmation-new-password" name="confirmation_new_password" type="password"
                                            class="form-control"
                                            placeholder="Підтвердження нового пароля">
-                                    <label for="change-password-confirmation-new-password">Підтвердження нового пароля</label>
+                                    <label for="profile-password-change-confirmation-new-password">Підтвердження нового пароля</label>
                                 </div>
                             </div>
                         </div>

@@ -631,7 +631,7 @@ class Validator {
             }
 
             if (typeof validators[validator] === 'function') {
-                let result = validators[validator](element);
+                let result = (validators[validator].bind(this))(element);
 
                 valid = typeof result.valid === 'boolean' ? result.valid : true;
                 message = typeof result.message === 'string' ? result.message : '';
